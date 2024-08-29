@@ -20,7 +20,7 @@ int main() {
   set_element(m2, 1, 2, 6);
 
   // Save the result of calculation into another matrix
-  Matrix* result = multipication(m1, m2);
+  Matrix* result = multiplication(m1, m2);
 
   // Print the final result to the console
   for (size_t i = 0; i < result->rows; i++) {

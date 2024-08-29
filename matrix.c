@@ -114,7 +114,7 @@ Matrix* negate(Matrix* a) {
   return result_matrix;
 }
 
-Matrix* fixed_multipication(Matrix *a, int multiplier) {
+Matrix* fixed_multiplication(Matrix *a, int multiplier) {
   Matrix* result_matrix = create_matrix(a->rows, a->cols);
   if (!result_matrix) return NULL;  // Check for allocation failure
 
@@ -127,7 +127,7 @@ Matrix* fixed_multipication(Matrix *a, int multiplier) {
   return result_matrix;
 } 
 
-Matrix* multipication(Matrix *a, Matrix *b) {
+Matrix* multiplication(Matrix *a, Matrix *b) {
   if (a->cols == b->rows) {
     Matrix* result_matrix = create_matrix(a->rows, b->cols);
     if (!result_matrix) return NULL;  // Check for allocation failure

@@ -15,8 +15,8 @@ void set_element(Matrix* matrix, size_t row, size_t col, int value);
 Matrix* addition(Matrix* a, Matrix* b);
 Matrix* subtraction(Matrix* a, Matrix* b);
 Matrix* negate(Matrix* a);
-Matrix* fixed_multipication(Matrix* a, int multiplier);
-Matrix* multipication(Matrix* a, Matrix* b);
+Matrix* fixed_multiplication(Matrix* a, int multiplier);
+Matrix* multiplication(Matrix* a, Matrix* b);
 void free_matrix(Matrix* matrix);
 
 #endif // !MATRIX_H
