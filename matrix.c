@@ -150,3 +150,63 @@ Matrix* multiplication(Matrix *a, Matrix *b) {
     return NULL;
   }
 }
+
+Matrix* create_minor_matrix(Matrix* matrix, size_t row, size_t col) {
+  // Create a minor matrix to calculate the cofactor
+  //  by removing a specified row and column
+  Matrix* minor = create_matrix(matrix->rows - 1, matrix->cols - 1);
+  if (!minor) return NULL;  // Check for memory allocation failure
+
+  size_t minorRow = 0, minorCol;
+
+  for (size_t i = 0; i < matrix->rows; i++) {
+    if (i == row) continue; // Skip the specified row
+    minorCol = 0;
+    for (size_t j = 0; j < matrix->cols; j++) {
+      if (j == col) continue; // Skip the specified column
+      minor->data[minorRow * minor->cols + minorCol] = matrix->data[i * matrix->cols + j];
+      minorCol++;
+    }
+    minorRow++;
+  }
+
+  return minor;
+}
+
+double determinant(Matrix* a) {
+  // Ensure the matrix is square
+  if (a->rows != a->cols) {
+    printf("No determinant for non-square matrices.\n");
+    return -1;
+  }
+
+  // Handle base cases
+  if (a->rows == 1) {
+    return a->data[0];
+  } else if (a->rows == 2) {
+    // Determinant for 2x2 matrices
+    return a->data[0] * a->data[3] - a->data[1] * a->data[2];
+  } else if (a->rows == 3) {
+    // Determinant for 3x3 matrices using Sarrus' rule
+    return a->data[0] * (a->data[4] * a->data[8] - a->data[5] * a->data[7]) -
+                    a->data[1] * (a->data[3] * a->data[8] - a->data[5] * a->data[6]) +
+                    a->data[2] * (a->data[3] * a->data[7] - a->data[4] * a->data[6]);
+  }
+
+  // Recrusive case for larger matrices
+  double det = 0.0;
+  for (size_t j = 0; j < a->cols; j++) {
+    Matrix* minor = create_minor_matrix(a, 0, j);
+    if (!minor) {
+      printf("Minor matrix memory allocation failed.\n");
+      return -1;
+    }
+
+    double cofactor = (j % 2 == 0 ? 1 : -1) * a->data[j] * determinant(minor);
+    det += cofactor;
+    
+    free_matrix(minor);  // Free the allocated memory for minor matrix
+  }
+
+  return det;
+}

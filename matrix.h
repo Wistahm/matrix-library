@@ -18,5 +18,7 @@ Matrix* negate(Matrix* a);
 Matrix* fixed_multiplication(Matrix* a, int multiplier);
 Matrix* multiplication(Matrix* a, Matrix* b);
 void free_matrix(Matrix* matrix);
+Matrix* create_minor_matrix(Matrix* matrix, size_t row, size_t col);
+double determinant(Matrix* a);
 
 #endif // !MATRIX_H
