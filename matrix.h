@@ -6,12 +6,12 @@
 typedef struct {
   size_t rows;
   size_t cols;
-  int *data;
+  double *data;
 } Matrix;
 
 Matrix* create_matrix(size_t rows, size_t cols);
-int get_element(Matrix* matrix, size_t row, size_t col);
-void set_element(Matrix* matrix, size_t row, size_t col, int value);
+double get_element(Matrix* matrix, size_t row, size_t col);
+void set_element(Matrix* matrix, size_t row, size_t col, double value);
 Matrix* addition(Matrix* a, Matrix* b);
 Matrix* subtraction(Matrix* a, Matrix* b);
 Matrix* negate(Matrix* a);
@@ -20,5 +20,9 @@ Matrix* multiplication(Matrix* a, Matrix* b);
 void free_matrix(Matrix* matrix);
 Matrix* create_minor_matrix(Matrix* matrix, size_t row, size_t col);
 double determinant(Matrix* a);
+Matrix* create_augmented_matrix(Matrix* a);
+void gaussian_elimination(Matrix* augmented);
+Matrix* extract_inversion(Matrix* augmented);
+Matrix* inversion(Matrix* a);
 
 #endif // !MATRIX_H

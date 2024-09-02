@@ -25,7 +25,7 @@ int main() {
   // Print the final result 
   for (size_t i = 0; i < result->rows; i++) {
     for (size_t j = 0; j < result->cols; j++) {
-      printf("%d ", get_element(result, i, j));
+      printf("%.2f  ", get_element(result, i, j));
     }
     printf("\n");
   }
@@ -51,9 +51,34 @@ int main() {
     printf("\nDeterminant of m3: %.2f\n", det_m3);
   }
 
+  // Calculate the matrix inversion
+  Matrix* m4 = create_matrix(2, 2);
+
+  set_element(m4, 0, 0, 1);
+  set_element(m4, 0, 1, -2);
+  set_element(m4, 1, 0, 6);
+  set_element(m4, 1, 1, 1);
+
+  Matrix* inverse = inversion(m4);
+
+  if (inverse) {
+    printf("Inverse matrix:\n");
+    for (size_t i = 0; i < inverse->rows; i++) {
+      for (size_t j = 0; j < inverse->cols; j++) {
+        printf("%.2f  ", get_element(inverse, i, j));
+      }
+      printf("\n");
+    }
+  } else {
+    printf("Matrix inversion failed.\n");
+  }
+
   // Free the allocated memory used for the matrices 
   free_matrix(m1);
   free_matrix(m2);
+  free_matrix(m3);
+  free_matrix(m4);
+  free_matrix(inverse);
   free_matrix(result);
 
   return 0;
