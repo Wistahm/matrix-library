@@ -329,7 +329,10 @@ Matrix* inversion(Matrix* a) {
 }
 
 Matrix* transpose(Matrix* a) {
+  // save the result in a matrix
   Matrix* transposed = create_matrix(a->cols, a->rows);
+
+  // check for allocation failure
   if (!transposed) {
     printf("Failed to allocate memory for the transpose matrix.\n");
     return NULL;
