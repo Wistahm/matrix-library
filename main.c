@@ -73,11 +73,32 @@ int main() {
     printf("Matrix inversion failed.\n");
   }
 
+  // matrix transpose
+  Matrix* m5 = create_matrix(3, 2);
+
+  set_element(m5, 0, 0, 1);
+  set_element(m5, 0, 1, 2);
+  set_element(m5, 1, 0, 3);
+  set_element(m5, 1, 1, 4);
+  set_element(m5, 2, 0, 5);
+  set_element(m5, 2, 1, 6);
+
+  Matrix* transposed = transpose(m5);
+
+  printf("Transposed: \n");
+  for (size_t i = 0; i < transposed->rows; i++) {
+    for (size_t j = 0; j < transposed->cols; j++) {
+      printf("%.1f ", get_element(transposed, i, j));
+    }
+    printf("\n");
+  }
+
   // Free the allocated memory used for the matrices 
   free_matrix(m1);
   free_matrix(m2);
   free_matrix(m3);
   free_matrix(m4);
+  free_matrix(m5);
   free_matrix(inverse);
   free_matrix(result);
 

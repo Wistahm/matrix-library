@@ -327,3 +327,19 @@ Matrix* inversion(Matrix* a) {
 
   return inverse;
 }
+
+Matrix* transpose(Matrix* a) {
+  Matrix* transposed = create_matrix(a->cols, a->rows);
+  if (!transposed) {
+    printf("Failed to allocate memory for the transpose matrix.\n");
+    return NULL;
+  }
+
+  for (size_t i = 0; i < a->rows; i++) {
+    for (size_t j = 0; j < a->cols; j++) {
+      transposed->data[j * a->rows + i] = a->data[i * a->cols + j];
+    }
+  }
+
+  return transposed;
+}

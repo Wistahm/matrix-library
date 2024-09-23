@@ -24,5 +24,6 @@ Matrix* create_augmented_matrix(Matrix* a);
 void gaussian_elimination(Matrix* augmented);
 Matrix* extract_inversion(Matrix* augmented);
 Matrix* inversion(Matrix* a);
+Matrix* transpose(Matrix* a);
 
 #endif // !MATRIX_H
