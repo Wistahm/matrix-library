@@ -89,7 +89,8 @@ int main() {
     } 
 
     free_matrix(mat1);
-    free_matrix(mat2);    
+    free_matrix(mat2);
+    free_matrix(result);    
 
     return 0;
 }
